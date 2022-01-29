@@ -17,6 +17,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VentaRepository extends JpaRepository<Venta, Long> {
 
-    // @Query ("select v from Venta v where v.expuesto != null")
-    // Page<Venta> cochesExpuestos(Pageable pageable);
+    
 }

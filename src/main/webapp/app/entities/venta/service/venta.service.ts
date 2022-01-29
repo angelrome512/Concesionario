@@ -53,13 +53,6 @@ export class VentaService {
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
   }
 
-  // findAllByExpuestoTrue(req?: any): Observable<EntityArrayResponseType> {
-  //   const options = createRequestOption(req);
-  //   return this.http
-  //     .get<IVenta[]>(`${this.resourceUrl}/by-modelo/expuesto`, { params: options, observe: 'response' })
-  //     .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
-  // }
-
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

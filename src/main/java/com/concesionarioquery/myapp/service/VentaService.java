@@ -45,14 +45,6 @@ public interface VentaService {
     Optional<VentaDTO> findOne(Long id);
 
     /**
-     * Get the "id" venta.
-     *
-     * @param id the id of the entity.
-     * @return the entity.
-     */
-    // Page<CocheDTO> findByExposicionTrue(Pageable pageable);
-
-    /**
      * Delete the "id" venta.
      *
      * @param id the id of the entity.

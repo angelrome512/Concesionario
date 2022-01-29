@@ -99,10 +99,4 @@ public class VentaServiceImpl implements VentaService {
         log.debug("Request to delete Venta : {}", id);
         ventaRepository.deleteById(id);
     }
-
-    // @Override
-    // public Page<CocheDTO> findByExposicionTrue(Pageable pageable) {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
 }
