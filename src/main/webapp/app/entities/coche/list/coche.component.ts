@@ -9,6 +9,7 @@ import { ICoche } from '../coche.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { CocheService } from '../service/coche.service';
 import { CocheDeleteDialogComponent } from '../delete/coche-delete-dialog.component';
+import { TestRequest } from '@angular/common/http/testing';
 
 @Component({
   selector: 'jhi-coche',
@@ -24,6 +25,8 @@ export class CocheComponent implements OnInit {
   ascending!: boolean;
   ngbPaginationPage = 1;
   searchString ="";
+  expuesto = true;
+  noExpuesto = false;
 
   constructor(
     protected cocheService: CocheService,
@@ -61,6 +64,52 @@ export class CocheComponent implements OnInit {
 
     this.cocheService
       .simpleSearch(this.searchString, {
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe({
+        next: (res: HttpResponse<ICoche[]>) => {
+          this.isLoading = false;
+          this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
+  }
+
+  buscarPorExpuestoT(page?: number, dontNavigate?: boolean): void {
+
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+
+    this.cocheService
+      .cochesExpuestos(this.expuesto, {
+        page: pageToLoad - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+      })
+      .subscribe({
+        next: (res: HttpResponse<ICoche[]>) => {
+          this.isLoading = false;
+          this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+        },
+        error: () => {
+          this.isLoading = false;
+          this.onError();
+        },
+      });
+  }
+
+  buscarPorExpuestoF(page?: number, dontNavigate?: boolean): void {
+
+    this.isLoading = true;
+    const pageToLoad: number = page ?? this.page ?? 1;
+
+    this.cocheService
+      .cochesExpuestos(this.noExpuesto, {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),

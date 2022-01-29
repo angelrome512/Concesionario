@@ -4,6 +4,18 @@
 
     <div class="d-flex justify-content-end align-items">
 
+      <div class="mr-2">
+        <button class="btn btn-warning" (click)="buscarPorExpuestoT()">
+          Expuestos
+        </button>
+        <button class="btn btn-warning" (click)="buscarPorExpuestoF()">
+          No Expuestos
+        </button>
+        <button class="btn btn-warning" (click)="loadPage()" clicked>
+          Todos
+        </button>
+      </div>
+
       <label class="mr-2">Filtro:</label>
 
       <input type="text" [(ngModel)]="searchString" (ngModelChange)="buscarPorAtributo()" placeholder="Buscar..." class="form-control-sm mr-2 mt-2">
